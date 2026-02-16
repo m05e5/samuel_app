@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+:root{
+  --gradient-start: #fbbb53;
+  --gradient-end: #fbcc82;
+  }
+  
+  
+  html, body, #__next {
+  height: 100%;
+  }
+  
+  
+  body {
+  background: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  }
+  
+  
+  /* smooth scroll */
+  html {
+  scroll-behavior: smooth;
+  }
+  
+  
+  /* Utility for the brand gradient button */
+  .btn-gradient {
+  background-image: linear-gradient(90deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+  }
+  
+  
+  /* subtle section container */
+  .container-max {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  }

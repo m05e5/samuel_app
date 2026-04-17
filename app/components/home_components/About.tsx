@@ -1,67 +1,72 @@
-import { User, TrendingUp, Target } from "lucide-react"; // Import icons from lucide-react
-import { FiMail, FiSettings, FiTarget, FiTrendingUp, FiUsers } from "react-icons/fi";
+import Link from "next/link";
+import { BarChart3, PenSquare, BrainCircuit } from "lucide-react";
 
-export default function AboutBAC() {
-const features = [
+const focusAreas = [
   {
-    icon: <FiUsers size={40} />,
-    title: "Leads Generation & Nurturing",
+    icon: <BarChart3 className="h-6 w-6" />,
+    title: "Data Science & Analytics",
     description:
-      "Boosting user acquisition and managing the MQL to SQL pipeline with email marketing, SMS, in-app messaging, etc",
+      "Building analytical workflows, experiments, dashboards, and machine learning solutions that support decision-making.",
   },
   {
-    icon: <FiMail size={40} />,
-    title: "Customer Lifecycle Management",
+    icon: <PenSquare className="h-6 w-6" />,
+    title: "Technical Writing",
     description:
-      "Nurturing, upselling & cross-selling to build longer-standing repeat clients",
+      "Writing practical tutorials and explainers on Python, SQL, Excel, statistics, and machine learning.",
   },
   {
-    icon: <FiTarget size={40} />,
-    title: "CRM Campaign Management",
+    icon: <BrainCircuit className="h-6 w-6" />,
+    title: "Applied Problem Solving",
     description:
-      "Leveraging Braze, HubSpot, Salesforce, etc to engage and move leads through the Lead > MQL > SQL > Opp funnel",
-  },
-  {
-    icon: <FiTrendingUp size={40} />,
-    title: "Revenue Operations",
-    description:
-      "Designing, documenting and optimising sales processes with deal mapping and customised dashboards for tracking",
-  },
-  {
-    icon: <FiSettings size={40} />,
-    title: "Sales Process Optimisation / Automation",
-    description:
-      "Collaborating with marketing, sales, CS and finance to build high-intent automated processes and impact dashboards",
+      "Turning technical complexity into usable outputs, from insights and models to documentation and educational content.",
   },
 ];
 
+export default function About() {
   return (
-    <section className=" ">
-      <div className="mx-auto max-w-7xl ">
+    <section>
+      <div className="mx-auto max-w-7xl">
         <div className="grid gap-16 lg:grid-cols-2">
-          {/* Left content */}
           <div>
             <span className="text-sm font-semibold tracking-widest text-gray-500">
-              ABOUT ME
+              ABOUT
             </span>
 
             <h2 className="mt-6 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">
-              I&apos;m a multi-skilled CRM manager, endorsed as a global talent.
+              Data Scientist and Technical Writer with a passion for making
+              complex ideas practical.
             </h2>
 
-            <p className="mt-6 max-w-xl text-lg text-gray-600">
-              I drive retention, engagement, and pipeline growth for high-growth
-              companies with CRM campaign management, marketing operations,
-              lifecycle marketing, workflow automation, MQL → SQL → SQO mapping,
-              and overall sales/marketing funnel optimisation.
+            <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
+              I work across data science, analytics, experimentation, and
+              technical communication. My goal is simple: build useful
+              data-driven solutions and explain technical concepts clearly enough
+              for people to apply them with confidence.
             </p>
+
+            <p className="mt-4 max-w-xl text-lg leading-8 text-gray-600">
+              My work includes analytics and modeling in industry, educational
+              writing for DataCamp, and independent publishing across data and
+              technology topics.
+            </p>
+
+            <div className="mt-8">
+              <Link
+                href="/about"
+                className="inline-flex items-center rounded-md border border-black px-5 py-3 text-sm font-semibold text-black transition hover:bg-black hover:text-white"
+              >
+                Read Full Bio
+              </Link>
+            </div>
           </div>
 
-          {/* Right features */}
           <div className="space-y-8">
-            {features.map((item, index) => (
-              <div key={index} className="flex items-center gap-5">
-                <div className="flex h-12 w-12 items-center justify-center  text-orange-200">
+            {focusAreas.map((item) => (
+              <div
+                key={item.title}
+                className="flex gap-5 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#fff4e2] text-[#d9992e]">
                   {item.icon}
                 </div>
 
@@ -69,7 +74,7 @@ const features = [
                   <h3 className="text-lg font-semibold text-gray-900">
                     {item.title}
                   </h3>
-                  <p className="mt-1 text-gray-600">
+                  <p className="mt-2 leading-7 text-gray-600">
                     {item.description}
                   </p>
                 </div>

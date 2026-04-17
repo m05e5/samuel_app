@@ -1,35 +1,29 @@
+import Link from "next/link";
+
 const experiences = [
   {
-    company: " Syno International",
+    company: "Syno International",
     industry: "Fintech",
     role: "Data Scientist",
     period: "Jul 2025 – Present",
     description:
-     `
-      Responsible for advanced pricing and brand perception modeling, applying 
-      machine learning and statistical methods to improve brand equity measurement,
-       and developing AI-driven tools and ETL pipelines to automate operations and 
-       accelerate insight delivery.
-     `
+      "Working on advanced pricing and brand perception modeling, applying machine learning and statistical methods to improve measurement frameworks, and building ETL and AI-driven tools that accelerate insight delivery.",
   },
   {
     company: "Syno International",
     industry: "Fintech",
     role: "Data Analyst",
-    period: "Sep 2024 – Jul 2025 ",
+    period: "Sep 2024 – Jul 2025",
     description:
-    `Focused on building brand tracking dashboards, 
-    conducting brand equity and pricing analyses, and 
-    delivering key driver and CVI/CBI insights to support
-     data-driven marketing and strategic decisions.`
+      "Built brand tracking dashboards, ran pricing and brand equity analyses, and delivered insights to support data-driven marketing and strategic decision-making.",
   },
   {
     company: "Freelance",
-    industry: "",
+    industry: "Consulting",
     role: "Business Intelligence Specialist",
     period: "2022",
     description:
-      "I am in charge of MQLs, engaging and converting them to SQLs, while automating CRM operations to sync with sales team. I focused on growth, product marketing, website analytics and CRM lifecycle management.",
+      "Delivered analytical support across CRM operations, website analytics, dashboarding, and growth-focused reporting for business decision-making.",
   },
   {
     company: "Cowrywise",
@@ -37,35 +31,44 @@ const experiences = [
     role: "Growth Marketing Manager",
     period: "2020",
     description:
-      "My main focus was on launching growth-focused campaigns, performance marketing, lead generation and nurturing, content marketing, and customer lifecycle management.",
+      "Led growth-focused campaigns, performance marketing initiatives, content marketing, and lifecycle work that supported user acquisition and retention.",
   },
 ];
 
 export default function ExperienceSection() {
   return (
-    <section className="">
-      <div className="mx-auto max-w-7xl ">
+    <section>
+      <div className="mx-auto max-w-7xl">
         <div className="grid gap-16 lg:grid-cols-3">
-          {/* Left heading */}
           <div>
             <span className="text-sm font-semibold tracking-widest text-gray-500">
-              WHERE I&apos;VE BEEN
+              EXPERIENCE
             </span>
 
             <h2 className="mt-6 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">
-              A quick view of <br />
-              selected{" "}
-              <span className="text-orange-200">relevant experience</span>
+              Selected work across data, analytics, and insight delivery.
             </h2>
+
+            <p className="mt-6 max-w-sm text-lg leading-8 text-gray-600">
+              A snapshot of roles that reflect my background in data science,
+              analytics, business intelligence, and growth.
+            </p>
+
+            <div className="mt-8">
+              <Link
+                href="/experience"
+                className="inline-flex items-center rounded-md border border-black px-5 py-3 text-sm font-semibold text-black transition hover:bg-black hover:text-white"
+              >
+                View Full Experience
+              </Link>
+            </div>
           </div>
 
-          {/* Experience grid */}
           <div className="lg:col-span-2">
             <div className="grid gap-12 sm:grid-cols-2">
-              {experiences.map((item, index) => (
-                <div key={index} className="relative">
-                  {/* Top row */}
-                  <div className="flex items-center justify-between">
+              {experiences.map((item) => (
+                <div key={`${item.company}-${item.role}`} className="relative">
+                  <div className="flex items-start justify-between gap-4">
                     <h3 className="text-lg font-semibold text-gray-900">
                       {item.company}{" "}
                       <span className="font-normal text-gray-500">
@@ -73,23 +76,20 @@ export default function ExperienceSection() {
                       </span>
                     </h3>
 
-                    <span className="text-sm font-semibold text-orange-200">
+                    <span className="text-sm font-semibold text-[#f0bf7e]">
                       {item.period}
                     </span>
                   </div>
 
-                  {/* Role */}
                   <p className="mt-2 text-sm font-medium text-gray-600">
                     {item.role}
                   </p>
 
-                  {/* Description */}
-                  <p className="mt-4 text-gray-600">
+                  <p className="mt-4 leading-7 text-gray-600">
                     {item.description}
                   </p>
 
-                  {/* Accent line */}
-                  <div className="mt-6 h-0.5 w-10 bg-orange-200" />
+                  <div className="mt-6 h-0.5 w-10 bg-[#f0bf7e]" />
                 </div>
               ))}
             </div>

@@ -1,28 +1,75 @@
 import Link from "next/link";
-import React from "react";
+import { FaLinkedin } from "react-icons/fa";
+import { BsSubstack } from "react-icons/bs";
+import { SiDatacamp } from "react-icons/si";
+import { navLinks } from "@/app/lib/navigation";
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t mt-20">
-      <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col items-center text-center">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-full bg-linear-to-r from-[#fbbb53] to-[#fbcc82] flex items-center justify-center text-white font-bold">
-            SA
+    <footer className="border-t border-black/10 bg-white">
+      <div className="container-max px-6 py-12">
+        <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
+          <div className="text-center md:text-left">
+            <div className="flex items-center justify-center gap-3 md:justify-start">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#fbbb53] to-[#fbcc82] text-sm font-bold text-white">
+                SS
+              </div>
+              <span className="text-lg font-semibold text-gray-900">
+                Samuel Shaibu
+              </span>
+            </div>
+            <p className="mt-3 max-w-md text-sm text-gray-500">
+              Data Scientist and Technical Writer focused on analytics,
+              experimentation, technical education, and clear communication.
+            </p>
           </div>
-          <span className="text-lg font-semibold text-gray-800">Samuel App</span>
+
+          <nav className="flex flex-wrap items-center justify-center gap-5">
+            {navLinks.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-sm text-gray-500 transition hover:text-black"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-4">
+            <a
+              href="https://www.linkedin.com/in/samuel-shaibu/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="text-gray-600 transition hover:text-black"
+            >
+              <FaLinkedin size={18} />
+            </a>
+            <a
+              href="https://aaboutdata.substack.com/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Substack"
+              className="text-gray-600 transition hover:text-black"
+            >
+              <BsSubstack size={18} />
+            </a>
+            <a
+              href="https://www.datacamp.com/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="DataCamp"
+              className="text-gray-600 transition hover:text-black"
+            >
+              <SiDatacamp size={18} />
+            </a>
+          </div>
         </div>
 
-
-
-        <div className="flex gap-6 text-gray-500 mb-4">
-          <Link href="/" className="hover:text-[#2596be]">Home</Link>
-          <Link href="/about_me" className="hover:text-[#2596be]">About</Link>
-          <Link href="/contact_me" className="hover:text-[#2596be]">Contact</Link>
+        <div className="mt-8 border-t border-black/10 pt-6 text-center text-sm text-gray-500">
+          © {new Date().getFullYear()} Samuel Shaibu. All rights reserved.
         </div>
-
-        <p className="text-sm text-gray-500">
-          © {new Date().getFullYear()} The Business Analysis Circle. All rights reserved.
-        </p>
       </div>
     </footer>
   );

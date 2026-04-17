@@ -1,48 +1,61 @@
-import { Linkedin } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import { FaLinkedin } from "react-icons/fa";
 import { BsSubstack } from "react-icons/bs";
-import { FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import { LiaLinkedin } from "react-icons/lia";
 import { SiDatacamp } from "react-icons/si";
-
-const NavItem = ({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) => (
-  <a href={href} className="text-sm font-medium hover:opacity-80">
-    {children}
-  </a>
-);
+import { navLinks } from "@/app/lib/navigation";
 
 export default function Navbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white/70 backdrop-blur-md z-40 shadow-sm">
-      <div className="container-max px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#fbbb53] to-[#fbcc82] flex items-center justify-center text-white font-bold">
-            SA
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur-md">
+      <div className="container-max flex items-center justify-between px-6 py-4">
+        <Link href="/#home" className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#fbbb53] to-[#fbcc82] text-base font-bold text-white">
+            SS
           </div>
-          <div className="text-lg font-semibold">Samuel App</div>
-        </div>
+          <div className="text-lg font-semibold text-gray-900">
+            Samuel Shaibu
+          </div>
+        </Link>
 
-        <nav className="flex items-center gap-6">
-          <NavItem href="/">Home</NavItem>
-          <NavItem href="/about_me">About</NavItem>
-          <NavItem href="/contact_me">Contact</NavItem>
+        <nav className="hidden items-center gap-6 md:flex">
+          {navLinks.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="text-sm font-medium text-gray-700 transition hover:text-black"
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
-        <div className="flex gap-2.5 items-center">
-          <a href="#contact">
-            <FaLinkedin size={20} />
+
+        <div className="flex items-center gap-3">
+          <a
+            href="https://www.linkedin.com/in/samuel-shaibu/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+            className="text-gray-700 transition hover:text-black"
+          >
+            <FaLinkedin size={19} />
           </a>
-          <a href="#contact">
-            <SiDatacamp size={20} />
+          <a
+            href="https://www.datacamp.com/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="DataCamp"
+            className="text-gray-700 transition hover:text-black"
+          >
+            <SiDatacamp size={19} />
           </a>
-          <a href="#contact">
-            <BsSubstack size={20} />
+          <a
+            href="https://aaboutdata.substack.com/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Substack"
+            className="text-gray-700 transition hover:text-black"
+          >
+            <BsSubstack size={19} />
           </a>
         </div>
       </div>

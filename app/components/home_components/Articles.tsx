@@ -1,98 +1,66 @@
-// data/villas.js
-export const villas = [
-  {
-    id: 1,
-    title: "Villa Luna",
-    country: "Greece",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum esse
-            consequuntur eius, sed quos, itaque earum eos dolor minima delectus
-            sequi exercitationem dolorem illo dicta provident voluptatem nihil nam.`,
-    link: 240,
-    tag: "Excel",
-    image: "/samuel_pic.jpg",
-  },
-  {
-    id: 2,
-    title: "Villa Tosco",
-    country: "Italy",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum esse
-            consequuntur eius, sed quos, itaque earum eos dolor minima delectus
-            sequi exercitationem dolorem illo dicta provident voluptatem nihil nam.`,
-    link: 300,
-    tag: "Python",
-    image: "/samuel_pic.jpg",
-  },
-  {
-    id: 3,
-    title: "Aphrodite",
-    country: "Greece",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum esse
-            consequuntur eius, sed quos, itaque earum eos dolor minima delectus
-            sequi exercitationem dolorem illo dicta provident voluptatem nihil nam.`,
-    link: 200,
-    tag: "Python",
-    image: "/samuel_pic.jpg",
-  },
-];
+import Link from "next/link";
+import { featuredArticles } from "@/app/lib/articles";
 
+export default function Articles() {
+  const previewArticles = featuredArticles.slice(0, 3);
 
-import Image from "next/image";
-import { Users, BedDouble, Bath, Square } from "lucide-react";
-
-export default function Articles() { 
   return (
-    <section className="cursor-pointer">
-      <div className="max-w-7xl mx-auto ">
-        {/* Header */}
-        <div className="text-center mb-14">
-          <h2 className="text-4xl font-serif font-semibold tracking-wide">
-            SOME ARTICLES
-          </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-gray-600">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum esse
-            consequuntur eius, sed quos, itaque earum eos dolor minima delectus
-            sequi exercitationem dolorem illo dicta provident voluptatem nihil nam.
-          </p>
+    <section>
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <span className="text-sm font-semibold tracking-widest text-gray-500">
+              WRITING
+            </span>
+            <h2 className="mt-4 text-4xl font-bold text-gray-900">
+              Featured articles and technical writing
+            </h2>
+            <p className="mt-4 text-lg leading-8 text-gray-600">
+              A selection of tutorials, explainers, and educational content
+              across Python, SQL, Excel, statistics, and machine learning.
+            </p>
+          </div>
+
+          <div>
+            <Link
+              href="/articles"
+              className="inline-flex items-center rounded-md border border-black px-5 py-3 text-sm font-semibold text-black transition hover:bg-black hover:text-white"
+            >
+              See All Articles
+            </Link>
+          </div>
         </div>
 
-        {/* Cards */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {villas.map((villa) => (
-            <div
-              key={villa.id}
-              className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition"
+          {previewArticles.map((article) => (
+            <article
+              key={article.id}
+              className="rounded-3xl border border-gray-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
-              {/* Image */}
-              <div className="relative h-64">
-                <Image
-                  src={villa.image}
-                  alt={villa.title}
-                  fill
-                  className="object-cover"
-                />
-
-                {/* link badge */}
-                <span className="absolute top-4 left-4 bg-[#f7ead7] text-sm px-4 py-2 rounded-md font-medium">
-                  {villa.tag}
+              <div className="flex items-center justify-between gap-4">
+                <span className="rounded-full bg-[#fff4e2] px-3 py-1 text-xs font-semibold text-[#a96a0f]">
+                  {article.category}
                 </span>
+                <span className="text-sm text-gray-500">{article.platform}</span>
               </div>
 
-              {/* Content */}
-              <div className="p-6">
-                <p className="text-sm text-gray-500 mb-1">
-                  {villa.country} 
-                </p>
+              <h3 className="mt-6 text-2xl font-semibold text-gray-900">
+                {article.title}
+              </h3>
 
-                <h3 className="text-xl font-semibold mb-4">
-                  {villa.title}
-                </h3>
+              <p className="mt-4 leading-7 text-gray-600">
+                {article.summary}
+              </p>
 
-                <p className="text-sm text-gray-500 mb-1">
-                   {villa.description}
-                </p>
-
-              </div>
-            </div>
+              <a
+                href={article.href}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex text-sm font-semibold text-black underline underline-offset-4"
+              >
+                Read article
+              </a>
+            </article>
           ))}
         </div>
       </div>

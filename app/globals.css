@@ -1,38 +1,182 @@
 @import "tailwindcss";
 
-:root{
-  --gradient-start: #fbbb53;
-  --gradient-end: #fbcc82;
-  }
-  
-  
-  html, body, #__next {
-  height: 100%;
-  }
-  
-  
-  body {
-  background: white;
+:root {
+  --bg: #07080d;
+  --bg-soft: #0b0d14;
+  --surface: rgba(255, 255, 255, 0.055);
+  --surface-strong: rgba(255, 255, 255, 0.085);
+  --line: rgba(255, 255, 255, 0.12);
+  --text: #f8fafc;
+  --muted: #9aa4b2;
+  --muted-strong: #cbd5e1;
+  --teal: #5eead4;
+  --amber: #fbbf24;
+  --blue: #60a5fa;
+  --rose: #fb7185;
+}
+
+html,
+body,
+#__next {
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    linear-gradient(180deg, rgba(94, 234, 212, 0.07), transparent 320px),
+    var(--bg);
+  background-size: auto;
+  color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  }
-  
-  
-  /* smooth scroll */
-  html {
-  scroll-behavior: smooth;
-  }
-  
-  
-  /* Utility for the brand gradient button */
-  .btn-gradient {
-  background-image: linear-gradient(90deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
-  }
-  
-  
-  /* subtle section container */
-  .container-max {
-  max-width: 1100px;
+}
+
+::selection {
+  background: rgba(94, 234, 212, 0.28);
+  color: #ffffff;
+}
+
+.container-max {
+  max-width: 1180px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.section-pad {
+  padding-top: 88px;
+  padding-bottom: 88px;
+}
+
+@media (max-width: 640px) {
+  .section-pad {
+    padding-top: 64px;
+    padding-bottom: 64px;
   }
+}
+
+.nav-shell {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(7, 8, 13, 0.78);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)),
+    rgba(11, 13, 20, 0.86);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.22);
+}
+
+.card-muted {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.kicker {
+  color: var(--teal);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.display-title {
+  font-size: clamp(3.2rem, 9vw, 6.8rem);
+  font-weight: 760;
+  line-height: 0.96;
+  letter-spacing: 0;
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 730;
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.subhead {
+  color: var(--muted-strong);
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  line-height: 1.75;
+}
+
+.copy {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--muted-strong);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.48rem 0.7rem;
+}
+
+.button-primary,
+.button-secondary {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 8px;
+  padding: 0.78rem 1rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.button-primary {
+  border: 1px solid rgba(94, 234, 212, 0.42);
+  background: #e7fff9;
+  color: #06110f;
+}
+
+.button-secondary {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--text);
+}
+
+.button-primary:hover,
+.button-secondary:hover {
+  transform: translateY(-1px);
+}
+
+.button-secondary:hover {
+  border-color: rgba(94, 234, 212, 0.38);
+  background: rgba(94, 234, 212, 0.08);
+}
+
+.rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+}
+
+.light-page {
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(94, 234, 212, 0.07), transparent 300px),
+    var(--bg);
+  color: var(--text);
+}

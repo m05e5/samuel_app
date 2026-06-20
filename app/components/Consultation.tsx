@@ -45,7 +45,7 @@ export default function Consultation() {
       <div className="max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold text-gray-900">Book Your Consultation</h2>
         <p className="text-gray-600 mt-3">
-          Choose the coaching package that fits your career goals and let's accelerate your
+          Choose the coaching package that fits your career goals and let&apos;s accelerate your
           BA journey together
         </p>
 

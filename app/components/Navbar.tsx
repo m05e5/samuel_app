@@ -1,49 +1,92 @@
-import { Linkedin } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import { FaGithub, FaLinkedin, FaMedium } from "react-icons/fa";
 import { BsSubstack } from "react-icons/bs";
-import { FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import { LiaLinkedin } from "react-icons/lia";
-import { SiDatacamp } from "react-icons/si";
+import { Download } from "lucide-react";
+import { navLinks } from "@/app/lib/navigation";
 
-const NavItem = ({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) => (
-  <a href={href} className="text-sm font-medium hover:opacity-80">
-    {children}
-  </a>
-);
+const socialLinks = [
+  {
+    href: "https://www.linkedin.com/in/samuel-shaibu/",
+    label: "LinkedIn",
+    icon: FaLinkedin,
+  },
+  {
+    href: "https://github.com/samietex",
+    label: "GitHub",
+    icon: FaGithub,
+  },
+  {
+    href: "https://medium.com/@Samietex",
+    label: "Medium",
+    icon: FaMedium,
+  },
+  {
+    href: "https://aaboutdata.substack.com/",
+    label: "Substack",
+    icon: BsSubstack,
+  },
+];
 
 export default function Navbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white/70 backdrop-blur-md z-40 shadow-sm">
-      <div className="container-max px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#fbbb53] to-[#fbcc82] flex items-center justify-center text-white font-bold">
-            SA
-          </div>
-          <div className="text-lg font-semibold">Samuel App</div>
-        </div>
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div className="container-max px-4 pt-4 sm:px-6">
+        <div className="nav-shell">
+          <div className="flex items-center justify-between gap-4 px-4 py-3">
+            <Link href="/#home" className="flex min-w-0 items-center gap-3">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-white text-sm font-black text-black">
+                SS
+              </div>
+              <div className="min-w-0">
+                <div className="truncate text-sm font-bold text-white sm:text-base">
+                  Samuel Shaibu
+                </div>
+                <div className="hidden text-xs text-[var(--muted)] sm:block">
+                  Data Engineer | Data Scientist | Technical Writer
+                </div>
+              </div>
+            </Link>
 
-        <nav className="flex items-center gap-6">
-          <NavItem href="/">Home</NavItem>
-          <NavItem href="/about_me">About</NavItem>
-          <NavItem href="/contact_me">Contact</NavItem>
-        </nav>
-        <div className="flex gap-2.5 items-center">
-          <a href="#contact">
-            <FaLinkedin size={20} />
-          </a>
-          <a href="#contact">
-            <SiDatacamp size={20} />
-          </a>
-          <a href="#contact">
-            <BsSubstack size={20} />
-          </a>
+            <nav className="hidden items-center gap-5 lg:flex">
+              {navLinks.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--muted)] transition hover:text-white"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="flex shrink-0 items-center gap-3 text-[var(--muted)]">
+              <a
+                href="/Samuel_Shaibu_Resume.pdf"
+                aria-label="Download resume"
+                className="hidden items-center gap-2 rounded-lg border border-white/15 px-3 py-2 text-xs font-bold text-white transition hover:border-[var(--teal)] hover:bg-white/5 sm:inline-flex"
+              >
+                <Download className="h-4 w-4" />
+                Resume
+              </a>
+
+              {socialLinks.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={item.label}
+                    className="transition hover:text-white"
+                  >
+                    <Icon size={17} />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </header>

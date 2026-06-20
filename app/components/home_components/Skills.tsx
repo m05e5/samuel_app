@@ -1,78 +1,52 @@
-'use client'
-
-import { motion } from "framer-motion";
-
-//skills
-export const skills = [
-  "Python",
-  "Pandas",
-  "NumPy",
-  "Scikit-Learn",
-  "SQL",
-  "Power BI",
-  "Streamlit",
-  "LangChain",
-  "JavaScript",
-  "TypeScript",
-  "ETL",
-  "Data Visualization",
-  "Experimentation",
-  "Model Evaluation",
-  "Responsible AI",
-  "Documentation",
-];
-
-// motion
-export const container = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.05,
-    },
+const skillGroups = [
+  {
+    title: "Data Engineering",
+    items: ["Python", "SQL", "pandas", "AWS Glue", "S3", "Athena", "Step Functions", "EventBridge", "Terraform", "SSIS"],
   },
-};
-
-export const item = {
-  hidden: { opacity: 0, y: 100 },
-  show: { opacity: 1, y: 0 },
-};
-
-
-
+  {
+    title: "Data Science",
+    items: ["Scikit-learn", "Statistics", "Model evaluation", "Feature importance", "Experimentation", "Pricing models", "Responsible AI"],
+  },
+  {
+    title: "Analytics & BI",
+    items: ["Power BI", "DAX", "KPI design", "Data modeling", "CVI/CBI", "MaxDiff", "Van Westendorp", "Dashboard design"],
+  },
+  {
+    title: "Apps & Writing",
+    items: ["Streamlit", "LangChain", "OpenAI API", "Technical tutorials", "Documentation", "Model cards", "Data sheets", "Curriculum design"],
+  },
+];
 
 export default function Skills() {
   return (
-    <section className="max-w-4xl mx-auto py-16 px-6 ">
-      <h2 className="text-3xl font-bold mb-6">Skills</h2>
+    <section id="skills" className="section-pad border-t border-white/10">
+      <div className="container-max px-4 sm:px-6">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <div className="kicker">Tech stack</div>
+            <h2 className="section-title mt-5">Grouped by how the work gets done.</h2>
+            <p className="subhead mt-5">
+              No percentage bars. The stack is organized by the job it performs:
+              pipelines, modeling, dashboards, applications, and writing.
+            </p>
+          </div>
 
-      <p className=" leading-relaxed mb-8">
-        I’m a data & AI professional with a special interest in{" "}
-        <span className="font-semibold">responsible AI</span> in terms of
-        robustness, fairness, transparency, and governance. I work with Python,
-        Scikit-Learn, Streamlit, LangChain, Pandas, SQL, and Power BI, and
-        translate complex ideas into clear, actionable writing.
-      </p>
-
-      {/* Skills */}
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="flex flex-wrap gap-3"
-      >
-        {skills.map((skill, index) => (
-          <motion.span
-            key={index}
-            variants={item}
-            whileHover={{ scale: 1.05 }}
-            className="px-4 py-2 text-sm rounded-full border border-gray-200 
-                       bg-white text-gray-700 shadow-sm cursor-default"
-          >
-            {skill}
-          </motion.span>
-        ))}
-      </motion.div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {skillGroups.map((group) => (
+              <article key={group.title} className="card p-6">
+                <h3 className="text-xl font-bold text-white">{group.title}</h3>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {group.items.map((skill) => (
+                    <span key={skill} className="tag">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

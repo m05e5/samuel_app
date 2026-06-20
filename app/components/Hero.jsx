@@ -1,62 +1,96 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Download, FileText } from "lucide-react";
+
+const proofPoints = [
+  { value: "4+", label: "years in data roles" },
+  { value: "18+", label: "technical tutorials" },
+  { value: "40+", label: "students mentored" },
+  { value: "95%+", label: "accuracy focus in client insight delivery" },
+];
 
 export default function Hero() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    // Trigger animation once the component mounts
-    setTimeout(() => setIsVisible(true), 200);
-  }, []);
-
   return (
-    <section className="flex items-center justify-center gap-12 px-16 py-24 bg-black text-white min-h-screen">
+    <section id="home" className="min-h-screen px-4 pb-20 pt-32 sm:px-6 lg:pt-36">
+      <div className="container-max">
+        <div className="grid min-h-[calc(100vh-9rem)] gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+          <div>
+            <div className="kicker">Data Engineer | Data Scientist | Technical Writer</div>
 
-      {/* LEFT section */}
-      <div
-        className={`transform transition-all duration-1000 ease-out
-          ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-40"}
-        `}
-      >
-        <div className="relative w-96 h-[500px] overflow-hidden rounded-xl">
-          {/* Image */}
-          <Image
-            src="/samuel_pic.jpg"
-            alt="Illustration"
-            width={500}
-            height={500}
-            className="object-contain"
-          />
+            <h1 className="display-title mt-6 max-w-5xl">
+              Building data systems people can trust, use, and understand.
+            </h1>
 
-          {/* Gradient overlay */}
-          <div
-            className="absolute inset-0 
-                   bg-linear-to-b 
-                   from-transparent 
-                   to-black"
-          />
+            <p className="subhead mt-7 max-w-3xl">
+              I build scalable data pipelines, extract actionable insights with
+              statistics and machine learning, and document complex systems so
+              technical and business teams can make better decisions.
+            </p>
+
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link href="/#projects" className="button-primary">
+                View Projects
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="/articles" className="button-secondary">
+                <FileText className="h-4 w-4" />
+                Read Articles
+              </Link>
+              <a href="/Samuel_Shaibu_Resume.pdf" className="button-secondary">
+                <Download className="h-4 w-4" />
+                Download Resume
+              </a>
+            </div>
+
+            <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {proofPoints.map((item) => (
+                <div key={item.label} className="border-l border-white/15 pl-4">
+                  <div className="text-2xl font-black text-white">{item.value}</div>
+                  <div className="mt-1 text-sm leading-5 text-[var(--muted)]">
+                    {item.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="card overflow-hidden">
+              <div className="relative aspect-[4/5] w-full">
+                <Image
+                  src="/samuel_pic.jpg"
+                  alt="Samuel Shaibu"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <div className="card-muted p-4">
+                <div className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--teal)]">
+                  Current focus
+                </div>
+                <p className="mt-2 text-sm leading-6 text-[var(--muted-strong)]">
+                  Python, SQL, AWS ETL, Power BI, ML modeling, and data
+                  education.
+                </p>
+              </div>
+              <div className="card-muted p-4">
+                <div className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--amber)]">
+                  Based in
+                </div>
+                <p className="mt-2 text-sm leading-6 text-[var(--muted-strong)]">
+                  Vilnius, Lithuania. Working across analytics, data platforms,
+                  and technical writing.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-
-      </div>
-
-      {/* RIGHT section */}
-      <div
-        className={`max-w-xl transform transition-all duration-1000 ease-out delay-200
-          ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-40"}
-        `}
-      >
-        <h1 className="text-6xl font-bold mb-6">Who am I?</h1>
-        <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-          I’m Flo, a UX/UI designer based in Italy. I have 10 years experience in
-          user interfaces and product design. I can help you build innovative
-          digital products from UX research to UI design and prototyping.
-        </p>
-
-        <button className="border-2 cursor-pointer border-white px-8 py-3 rounded-md hover:bg-white hover:text-black transition">
-          Learn more
-        </button>
       </div>
     </section>
   );

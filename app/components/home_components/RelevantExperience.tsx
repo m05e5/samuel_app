@@ -1,99 +1,77 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
 const experiences = [
   {
-    company: " Syno International",
-    industry: "Fintech",
+    period: "2025 - Present",
     role: "Data Scientist",
-    period: "Jul 2025 – Present",
-    description:
-     `
-      Responsible for advanced pricing and brand perception modeling, applying 
-      machine learning and statistical methods to improve brand equity measurement,
-       and developing AI-driven tools and ETL pipelines to automate operations and 
-       accelerate insight delivery.
-     `
-  },
-  {
     company: "Syno International",
-    industry: "Fintech",
+    detail:
+      "Building ETL workflows, AI-powered internal tools, Power BI outputs, and statistical models for survey, brand, and pricing analytics.",
+  },
+  {
+    period: "2024 - 2025",
     role: "Data Analyst",
-    period: "Sep 2024 – Jul 2025 ",
-    description:
-    `Focused on building brand tracking dashboards, 
-    conducting brand equity and pricing analyses, and 
-    delivering key driver and CVI/CBI insights to support
-     data-driven marketing and strategic decisions.`
+    company: "Syno International",
+    detail:
+      "Delivered dashboards, SQL models, pricing studies, brand equity analysis, and client-ready insight workflows across multiple markets.",
   },
   {
+    period: "2024 - 2025",
+    role: "Technical Writer",
+    company: "DataCamp",
+    detail:
+      "Published peer-reviewed tutorials on Python, SQL, Excel, statistics, machine learning, and practical data concepts.",
+  },
+  {
+    period: "2023 - 2024",
+    role: "Data Science Instructor",
+    company: "GOMYCODE",
+    detail:
+      "Taught and mentored 40+ students through Python, SQL, machine learning, visualization, and end-to-end data projects.",
+  },
+  {
+    period: "2020 - 2024",
+    role: "BI Specialist / Data Scientist",
     company: "Freelance",
-    industry: "",
-    role: "Business Intelligence Specialist",
-    period: "2022",
-    description:
-      "I am in charge of MQLs, engaging and converting them to SQLs, while automating CRM operations to sync with sales team. I focused on growth, product marketing, website analytics and CRM lifecycle management.",
-  },
-  {
-    company: "Cowrywise",
-    industry: "Fintech",
-    role: "Growth Marketing Manager",
-    period: "2020",
-    description:
-      "My main focus was on launching growth-focused campaigns, performance marketing, lead generation and nurturing, content marketing, and customer lifecycle management.",
+    detail:
+      "Built dashboards, ETL processes, documentation, and analytical solutions for clients across energy, finance, and edtech.",
   },
 ];
 
 export default function ExperienceSection() {
   return (
-    <section className="">
-      <div className="mx-auto max-w-7xl ">
-        <div className="grid gap-16 lg:grid-cols-3">
-          {/* Left heading */}
-          <div>
-            <span className="text-sm font-semibold tracking-widest text-gray-500">
-              WHERE I&apos;VE BEEN
-            </span>
-
-            <h2 className="mt-6 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">
-              A quick view of <br />
-              selected{" "}
-              <span className="text-orange-200">relevant experience</span>
-            </h2>
+    <section id="experience" className="section-pad border-t border-white/10">
+      <div className="container-max px-4 sm:px-6">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-3xl">
+            <div className="kicker">Experience</div>
+            <h2 className="section-title mt-5">A career built around data work that ships.</h2>
           </div>
 
-          {/* Experience grid */}
-          <div className="lg:col-span-2">
-            <div className="grid gap-12 sm:grid-cols-2">
-              {experiences.map((item, index) => (
-                <div key={index} className="relative">
-                  {/* Top row */}
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      {item.company}{" "}
-                      <span className="font-normal text-gray-500">
-                        ({item.industry})
-                      </span>
-                    </h3>
+          <Link href="/experience" className="button-secondary w-full sm:w-auto">
+            Full experience
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
 
-                    <span className="text-sm font-semibold text-orange-200">
-                      {item.period}
-                    </span>
-                  </div>
-
-                  {/* Role */}
-                  <p className="mt-2 text-sm font-medium text-gray-600">
-                    {item.role}
-                  </p>
-
-                  {/* Description */}
-                  <p className="mt-4 text-gray-600">
-                    {item.description}
-                  </p>
-
-                  {/* Accent line */}
-                  <div className="mt-6 h-0.5 w-10 bg-orange-200" />
+        <div className="mt-12">
+          {experiences.map((item, index) => (
+            <article
+              key={`${item.company}-${item.role}-${item.period}`}
+              className="grid gap-4 border-t border-white/10 py-7 md:grid-cols-[180px_1fr]"
+            >
+              <div className="text-sm font-bold text-[var(--teal)]">{item.period}</div>
+              <div className="grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+                <div>
+                  <h3 className="text-xl font-bold text-white">{item.role}</h3>
+                  <p className="mt-1 text-sm text-[var(--muted)]">{item.company}</p>
                 </div>
-              ))}
-            </div>
-          </div>
+                <p className="copy text-sm">{item.detail}</p>
+              </div>
+              {index === experiences.length - 1 ? <div className="hidden" /> : null}
+            </article>
+          ))}
         </div>
       </div>
     </section>

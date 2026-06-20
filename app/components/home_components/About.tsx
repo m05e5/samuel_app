@@ -1,81 +1,69 @@
-import { User, TrendingUp, Target } from "lucide-react"; // Import icons from lucide-react
-import { FiMail, FiSettings, FiTarget, FiTrendingUp, FiUsers } from "react-icons/fi";
+import { BrainCircuit, DatabaseZap, PenLine } from "lucide-react";
 
-export default function AboutBAC() {
-const features = [
+const pillars = [
   {
-    icon: <FiUsers size={40} />,
-    title: "Leads Generation & Nurturing",
-    description:
-      "Boosting user acquisition and managing the MQL to SQL pipeline with email marketing, SMS, in-app messaging, etc",
+    title: "Data Engineering",
+    icon: DatabaseZap,
+    summary:
+      "I design pipelines that move, validate, transform, and serve data reliably for analytics and operations.",
+    items: ["ETL pipelines", "Data validation", "AWS Glue", "S3 + Athena", "Step Functions", "Terraform"],
+    accent: "text-[var(--teal)]",
   },
   {
-    icon: <FiMail size={40} />,
-    title: "Customer Lifecycle Management",
-    description:
-      "Nurturing, upselling & cross-selling to build longer-standing repeat clients",
+    title: "Data Science",
+    icon: BrainCircuit,
+    summary:
+      "I use statistical modeling and machine learning to answer business questions and make trade-offs visible.",
+    items: ["Machine learning", "Pricing analysis", "Experimentation", "Forecasting", "Model evaluation", "Responsible AI"],
+    accent: "text-[var(--blue)]",
   },
   {
-    icon: <FiTarget size={40} />,
-    title: "CRM Campaign Management",
-    description:
-      "Leveraging Braze, HubSpot, Salesforce, etc to engage and move leads through the Lead > MQL > SQL > Opp funnel",
-  },
-  {
-    icon: <FiTrendingUp size={40} />,
-    title: "Revenue Operations",
-    description:
-      "Designing, documenting and optimising sales processes with deal mapping and customised dashboards for tracking",
-  },
-  {
-    icon: <FiSettings size={40} />,
-    title: "Sales Process Optimisation / Automation",
-    description:
-      "Collaborating with marketing, sales, CS and finance to build high-intent automated processes and impact dashboards",
+    title: "Technical Writing",
+    icon: PenLine,
+    summary:
+      "I turn technical systems into tutorials, documentation, and explanations people can actually use.",
+    items: ["DataCamp tutorials", "API-style docs", "Newsletter writing", "Model cards", "Guides", "Developer education"],
+    accent: "text-[var(--amber)]",
   },
 ];
 
+export default function About() {
   return (
-    <section className=" ">
-      <div className="mx-auto max-w-7xl ">
-        <div className="grid gap-16 lg:grid-cols-2">
-          {/* Left content */}
-          <div>
-            <span className="text-sm font-semibold tracking-widest text-gray-500">
-              ABOUT ME
-            </span>
+    <section id="work" className="section-pad border-t border-white/10">
+      <div className="container-max px-4 sm:px-6">
+        <div className="max-w-3xl">
+          <div className="kicker">What I do</div>
+          <h2 className="section-title mt-5">Three disciplines, one workflow.</h2>
+          <p className="subhead mt-5">
+            My best work happens where data engineering, data science, and
+            communication overlap: build the system, analyze the signal, explain
+            the result.
+          </p>
+        </div>
 
-            <h2 className="mt-6 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">
-              I&apos;m a multi-skilled CRM manager, endorsed as a global talent.
-            </h2>
+        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+          {pillars.map((pillar) => {
+            const Icon = pillar.icon;
 
-            <p className="mt-6 max-w-xl text-lg text-gray-600">
-              I drive retention, engagement, and pipeline growth for high-growth
-              companies with CRM campaign management, marketing operations,
-              lifecycle marketing, workflow automation, MQL → SQL → SQO mapping,
-              and overall sales/marketing funnel optimisation.
-            </p>
-          </div>
-
-          {/* Right features */}
-          <div className="space-y-8">
-            {features.map((item, index) => (
-              <div key={index} className="flex items-center gap-5">
-                <div className="flex h-12 w-12 items-center justify-center  text-orange-200">
-                  {item.icon}
+            return (
+              <article key={pillar.title} className="card p-6">
+                <div className={`mb-8 inline-flex rounded-lg border border-white/10 bg-white/5 p-3 ${pillar.accent}`}>
+                  <Icon className="h-6 w-6" />
                 </div>
 
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1 text-gray-600">
-                    {item.description}
-                  </p>
+                <h3 className="text-2xl font-bold text-white">{pillar.title}</h3>
+                <p className="copy mt-4 text-sm">{pillar.summary}</p>
+
+                <div className="mt-7 flex flex-wrap gap-2">
+                  {pillar.items.map((item) => (
+                    <span key={item} className="tag">
+                      {item}
+                    </span>
+                  ))}
                 </div>
-              </div>
-            ))}
-          </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

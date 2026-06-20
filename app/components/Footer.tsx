@@ -1,28 +1,94 @@
 import Link from "next/link";
-import React from "react";
+import { FaGithub, FaLinkedin, FaMedium } from "react-icons/fa";
+import { BsSubstack } from "react-icons/bs";
+import { ArrowUpRight, Mail } from "lucide-react";
+
+const socialLinks = [
+  {
+    href: "https://www.linkedin.com/in/samuel-shaibu/",
+    label: "LinkedIn",
+    icon: FaLinkedin,
+  },
+  {
+    href: "https://github.com/samietex",
+    label: "GitHub",
+    icon: FaGithub,
+  },
+  {
+    href: "https://medium.com/@Samietex",
+    label: "Medium",
+    icon: FaMedium,
+  },
+  {
+    href: "https://aaboutdata.substack.com/",
+    label: "Substack",
+    icon: BsSubstack,
+  },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t mt-20">
-      <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col items-center text-center">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-full bg-linear-to-r from-[#fbbb53] to-[#fbcc82] flex items-center justify-center text-white font-bold">
-            SA
+    <footer id="contact" className="border-t border-white/10">
+      <div className="container-max px-4 py-16 sm:px-6">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+          <div>
+            <div className="kicker">Contact</div>
+            <h2 className="mt-5 max-w-3xl text-4xl font-bold leading-tight text-white sm:text-5xl">
+              Need someone who can build the data system and explain it clearly?
+            </h2>
+            <p className="copy mt-5 max-w-2xl text-base">
+              I am open to data engineering, data science, analytics, and
+              technical writing opportunities where reliable implementation and
+              clear communication both matter.
+            </p>
+
+            <a
+              href="mailto:shaibu.samuel@yahoo.com"
+              className="button-primary mt-8 w-full sm:w-auto"
+            >
+              <Mail className="h-4 w-4" />
+              shaibu.samuel@yahoo.com
+            </a>
           </div>
-          <span className="text-lg font-semibold text-gray-800">Samuel App</span>
+
+          <div className="flex flex-col gap-5 lg:items-end">
+            <div className="flex flex-wrap gap-3 text-[var(--muted)]">
+              {socialLinks.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="tag transition hover:border-[var(--teal)] hover:text-white"
+                  >
+                    <Icon size={14} />
+                    {item.label}
+                  </a>
+                );
+              })}
+            </div>
+
+            <Link href="/contact" className="button-secondary w-full sm:w-auto">
+              Contact details
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
 
+        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.14em] text-[var(--muted)] md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-wrap gap-4">
+            <Link href="/#work">Work</Link>
+            <Link href="/#projects">Projects</Link>
+            <Link href="/#articles">Writing</Link>
+            <Link href="/#skills">Stack</Link>
+            <Link href="/experience">Experience</Link>
+          </div>
 
-
-        <div className="flex gap-6 text-gray-500 mb-4">
-          <Link href="/" className="hover:text-[#2596be]">Home</Link>
-          <Link href="/about_me" className="hover:text-[#2596be]">About</Link>
-          <Link href="/contact_me" className="hover:text-[#2596be]">Contact</Link>
+          <div>Copyright {new Date().getFullYear()} Samuel Shaibu</div>
         </div>
-
-        <p className="text-sm text-gray-500">
-          © {new Date().getFullYear()} The Business Analysis Circle. All rights reserved.
-        </p>
       </div>
     </footer>
   );

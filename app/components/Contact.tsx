@@ -16,7 +16,7 @@ import {
             <h2 className="text-4xl font-bold text-gray-900">Get in Touch</h2>
             <div className="h-1 w-20 mx-auto bg-orange-400 mt-3 rounded-full" />
             <p className="mt-4 text-gray-600 text-lg">
-              Have questions? Want to learn more? We'd love to hear from you!
+              Have questions? Want to learn more? We&apos;d love to hear from you!
             </p>
           </div>
   

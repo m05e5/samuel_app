@@ -1,74 +1,93 @@
 import Link from "next/link";
-import { FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaMedium } from "react-icons/fa";
 import { BsSubstack } from "react-icons/bs";
-import { SiDatacamp } from "react-icons/si";
-import { navLinks } from "@/app/lib/navigation";
+import { ArrowUpRight, Mail } from "lucide-react";
+
+const socialLinks = [
+  {
+    href: "https://www.linkedin.com/in/samuel-shaibu/",
+    label: "LinkedIn",
+    icon: FaLinkedin,
+  },
+  {
+    href: "https://github.com/samietex",
+    label: "GitHub",
+    icon: FaGithub,
+  },
+  {
+    href: "https://medium.com/@Samietex",
+    label: "Medium",
+    icon: FaMedium,
+  },
+  {
+    href: "https://aaboutdata.substack.com/",
+    label: "Substack",
+    icon: BsSubstack,
+  },
+];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-black/10 bg-white">
-      <div className="container-max px-6 py-12">
-        <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-          <div className="text-center md:text-left">
-            <div className="flex items-center justify-center gap-3 md:justify-start">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#fbbb53] to-[#fbcc82] text-sm font-bold text-white">
-                SS
-              </div>
-              <span className="text-lg font-semibold text-gray-900">
-                Samuel Shaibu
-              </span>
-            </div>
-            <p className="mt-3 max-w-md text-sm text-gray-500">
-              Data Scientist and Technical Writer focused on analytics,
-              experimentation, technical education, and clear communication.
+    <footer id="contact" className="border-t border-white/10">
+      <div className="container-max px-4 py-16 sm:px-6">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+          <div>
+            <div className="kicker">Contact</div>
+            <h2 className="mt-5 max-w-3xl text-4xl font-bold leading-tight text-white sm:text-5xl">
+              Need someone who can build the data system and explain it clearly?
+            </h2>
+            <p className="copy mt-5 max-w-2xl text-base">
+              I am open to data engineering, data science, analytics, and
+              technical writing opportunities where reliable implementation and
+              clear communication both matter.
             </p>
+
+            <a
+              href="mailto:shaibu.samuel@yahoo.com"
+              className="button-primary mt-8 w-full sm:w-auto"
+            >
+              <Mail className="h-4 w-4" />
+              shaibu.samuel@yahoo.com
+            </a>
           </div>
 
-          <nav className="flex flex-wrap items-center justify-center gap-5">
-            {navLinks.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="text-sm text-gray-500 transition hover:text-black"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <div className="flex flex-col gap-5 lg:items-end">
+            <div className="flex flex-wrap gap-3 text-[var(--muted)]">
+              {socialLinks.map((item) => {
+                const Icon = item.icon;
 
-          <div className="flex items-center gap-4">
-            <a
-              href="https://www.linkedin.com/in/samuel-shaibu/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-              className="text-gray-600 transition hover:text-black"
-            >
-              <FaLinkedin size={18} />
-            </a>
-            <a
-              href="https://aaboutdata.substack.com/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Substack"
-              className="text-gray-600 transition hover:text-black"
-            >
-              <BsSubstack size={18} />
-            </a>
-            <a
-              href="https://www.datacamp.com/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="DataCamp"
-              className="text-gray-600 transition hover:text-black"
-            >
-              <SiDatacamp size={18} />
-            </a>
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="tag transition hover:border-[var(--teal)] hover:text-white"
+                  >
+                    <Icon size={14} />
+                    {item.label}
+                  </a>
+                );
+              })}
+            </div>
+
+            <Link href="/contact" className="button-secondary w-full sm:w-auto">
+              Contact details
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
 
-        <div className="mt-8 border-t border-black/10 pt-6 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} Samuel Shaibu. All rights reserved.
+        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.14em] text-[var(--muted)] md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-wrap gap-4">
+            <Link href="/#work">Work</Link>
+            <Link href="/#projects">Projects</Link>
+            <Link href="/#articles">Writing</Link>
+            <Link href="/#skills">Stack</Link>
+            <Link href="/experience">Experience</Link>
+          </div>
+
+          <div>Copyright {new Date().getFullYear()} Samuel Shaibu</div>
         </div>
       </div>
     </footer>

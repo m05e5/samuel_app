@@ -1,62 +1,92 @@
 import Link from "next/link";
-import { FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaMedium } from "react-icons/fa";
 import { BsSubstack } from "react-icons/bs";
-import { SiDatacamp } from "react-icons/si";
+import { Download } from "lucide-react";
 import { navLinks } from "@/app/lib/navigation";
+
+const socialLinks = [
+  {
+    href: "https://www.linkedin.com/in/samuel-shaibu/",
+    label: "LinkedIn",
+    icon: FaLinkedin,
+  },
+  {
+    href: "https://github.com/samietex",
+    label: "GitHub",
+    icon: FaGithub,
+  },
+  {
+    href: "https://medium.com/@Samietex",
+    label: "Medium",
+    icon: FaMedium,
+  },
+  {
+    href: "https://aaboutdata.substack.com/",
+    label: "Substack",
+    icon: BsSubstack,
+  },
+];
 
 export default function Navbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur-md">
-      <div className="container-max flex items-center justify-between px-6 py-4">
-        <Link href="/#home" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#fbbb53] to-[#fbcc82] text-base font-bold text-white">
-            SS
-          </div>
-          <div className="text-lg font-semibold text-gray-900">
-            Samuel Shaibu
-          </div>
-        </Link>
-
-        <nav className="hidden items-center gap-6 md:flex">
-          {navLinks.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="text-sm font-medium text-gray-700 transition hover:text-black"
-            >
-              {item.label}
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div className="container-max px-4 pt-4 sm:px-6">
+        <div className="nav-shell">
+          <div className="flex items-center justify-between gap-4 px-4 py-3">
+            <Link href="/#home" className="flex min-w-0 items-center gap-3">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-white text-sm font-black text-black">
+                SS
+              </div>
+              <div className="min-w-0">
+                <div className="truncate text-sm font-bold text-white sm:text-base">
+                  Samuel Shaibu
+                </div>
+                <div className="hidden text-xs text-[var(--muted)] sm:block">
+                  Data Engineer | Data Scientist | Technical Writer
+                </div>
+              </div>
             </Link>
-          ))}
-        </nav>
 
-        <div className="flex items-center gap-3">
-          <a
-            href="https://www.linkedin.com/in/samuel-shaibu/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn"
-            className="text-gray-700 transition hover:text-black"
-          >
-            <FaLinkedin size={19} />
-          </a>
-          <a
-            href="https://www.datacamp.com/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="DataCamp"
-            className="text-gray-700 transition hover:text-black"
-          >
-            <SiDatacamp size={19} />
-          </a>
-          <a
-            href="https://aaboutdata.substack.com/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Substack"
-            className="text-gray-700 transition hover:text-black"
-          >
-            <BsSubstack size={19} />
-          </a>
+            <nav className="hidden items-center gap-5 lg:flex">
+              {navLinks.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--muted)] transition hover:text-white"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="flex shrink-0 items-center gap-3 text-[var(--muted)]">
+              <a
+                href="/Samuel_Shaibu_Resume.pdf"
+                aria-label="Download resume"
+                className="hidden items-center gap-2 rounded-lg border border-white/15 px-3 py-2 text-xs font-bold text-white transition hover:border-[var(--teal)] hover:bg-white/5 sm:inline-flex"
+              >
+                <Download className="h-4 w-4" />
+                Resume
+              </a>
+
+              {socialLinks.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={item.label}
+                    className="transition hover:text-white"
+                  >
+                    <Icon size={17} />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </header>

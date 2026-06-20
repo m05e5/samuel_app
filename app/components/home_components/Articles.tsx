@@ -1,64 +1,59 @@
 import Link from "next/link";
+import { ArrowRight, Clock, ExternalLink } from "lucide-react";
 import { featuredArticles } from "@/app/lib/articles";
 
-export default function Articles() {
-  const previewArticles = featuredArticles.slice(0, 3);
+const featuredWriting = featuredArticles.slice(0, 6);
 
+export default function Articles() {
   return (
-    <section>
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <span className="text-sm font-semibold tracking-widest text-gray-500">
-              WRITING
-            </span>
-            <h2 className="mt-4 text-4xl font-bold text-gray-900">
-              Featured articles and technical writing
-            </h2>
-            <p className="mt-4 text-lg leading-8 text-gray-600">
-              A selection of tutorials, explainers, and educational content
-              across Python, SQL, Excel, statistics, and machine learning.
+    <section id="articles" className="section-pad border-t border-white/10">
+      <div className="container-max px-4 sm:px-6">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-3xl">
+            <div className="kicker">Writing & publications</div>
+            <h2 className="section-title mt-5">Technical writing is part of the work.</h2>
+            <p className="subhead mt-5">
+              I write tutorials, explainers, and newsletters that make data
+              engineering, analytics, machine learning, and AI ethics easier to
+              understand and apply.
             </p>
           </div>
 
-          <div>
-            <Link
-              href="/articles"
-              className="inline-flex items-center rounded-md border border-black px-5 py-3 text-sm font-semibold text-black transition hover:bg-black hover:text-white"
-            >
-              See All Articles
-            </Link>
-          </div>
+          <Link href="/articles" className="button-secondary w-full sm:w-auto">
+            View all writing
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {previewArticles.map((article) => (
+        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+          {featuredWriting.map((article, index) => (
             <article
               key={article.id}
-              className="rounded-3xl border border-gray-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+              className={`card p-6 ${index === 0 ? "lg:col-span-2" : ""}`}
             >
-              <div className="flex items-center justify-between gap-4">
-                <span className="rounded-full bg-[#fff4e2] px-3 py-1 text-xs font-semibold text-[#a96a0f]">
-                  {article.category}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="tag">{article.category}</span>
+                <span className="tag">{article.platform}</span>
+                <span className="tag">
+                  <Clock className="h-3.5 w-3.5" />
+                  Practical read
                 </span>
-                <span className="text-sm text-gray-500">{article.platform}</span>
               </div>
 
-              <h3 className="mt-6 text-2xl font-semibold text-gray-900">
+              <h3 className={`${index === 0 ? "text-3xl" : "text-2xl"} mt-6 font-bold leading-tight text-white`}>
                 {article.title}
               </h3>
 
-              <p className="mt-4 leading-7 text-gray-600">
-                {article.summary}
-              </p>
+              <p className="copy mt-4 text-sm">{article.summary}</p>
 
               <a
                 href={article.href}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-6 inline-flex text-sm font-semibold text-black underline underline-offset-4"
+                className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[var(--teal)] transition hover:text-white"
               >
                 Read article
+                <ExternalLink className="h-4 w-4" />
               </a>
             </article>
           ))}

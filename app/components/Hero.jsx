@@ -1,84 +1,93 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Download, FileText } from "lucide-react";
+
+const proofPoints = [
+  { value: "4+", label: "years in data roles" },
+  { value: "18+", label: "technical tutorials" },
+  { value: "40+", label: "students mentored" },
+  { value: "95%+", label: "accuracy focus in client insight delivery" },
+];
 
 export default function Hero() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 150);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <section
-      id="home"
-      className="min-h-screen bg-black text-white pt-28 pb-16"
-    >
-      <div className="container-max px-6">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Left content */}
-          <div
-            className={`transform transition-all duration-1000 ease-out ${
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-10"
-            }`}
-          >
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-[#fbcc82]">
-              Data Scientist · Technical Writer
-            </p>
+    <section id="home" className="min-h-screen px-4 pb-20 pt-32 sm:px-6 lg:pt-36">
+      <div className="container-max">
+        <div className="grid min-h-[calc(100vh-9rem)] gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+          <div>
+            <div className="kicker">Data Engineer | Data Scientist | Technical Writer</div>
 
-            <h1 className="text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl">
-              Samuel Shaibu
+            <h1 className="display-title mt-6 max-w-5xl">
+              Building data systems people can trust, use, and understand.
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-300 sm:text-xl">
-              I build data-driven solutions and write clear technical content
-              that helps people understand, apply, and trust complex ideas.
+            <p className="subhead mt-7 max-w-3xl">
+              I build scalable data pipelines, extract actionable insights with
+              statistics and machine learning, and document complex systems so
+              technical and business teams can make better decisions.
             </p>
 
-            <p className="mt-4 max-w-2xl text-base leading-7 text-gray-400">
-              My work spans data science, analytics, experimentation, technical
-              writing, and educational content across Python, SQL, Excel, and
-              machine learning.
-            </p>
-
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a
-                href="#articles"
-                className="rounded-md bg-white px-6 py-3 text-sm font-semibold text-black transition hover:opacity-90"
-              >
-                View Writing
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link href="/#projects" className="button-primary">
+                View Projects
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="/articles" className="button-secondary">
+                <FileText className="h-4 w-4" />
+                Read Articles
+              </Link>
+              <a href="/Samuel_Shaibu_Resume.pdf" className="button-secondary">
+                <Download className="h-4 w-4" />
+                Download Resume
               </a>
+            </div>
 
-              <a
-                href="#contact"
-                className="rounded-md border border-white px-6 py-3 text-sm font-semibold transition hover:bg-white hover:text-black"
-              >
-                Get in Touch
-              </a>
+            <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {proofPoints.map((item) => (
+                <div key={item.label} className="border-l border-white/15 pl-4">
+                  <div className="text-2xl font-black text-white">{item.value}</div>
+                  <div className="mt-1 text-sm leading-5 text-[var(--muted)]">
+                    {item.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Right image */}
-          <div
-            className={`transform transition-all duration-1000 ease-out delay-200 ${
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-10"
-            }`}
-          >
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-3xl border border-white/10 bg-neutral-900">
-              <Image
-                src="/samuel_pic.jpg"
-                alt="Portrait of Samuel Shaibu"
-                fill
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+          <div className="relative">
+            <div className="card overflow-hidden">
+              <div className="relative aspect-[4/5] w-full">
+                <Image
+                  src="/samuel_pic.jpg"
+                  alt="Samuel Shaibu"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <div className="card-muted p-4">
+                <div className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--teal)]">
+                  Current focus
+                </div>
+                <p className="mt-2 text-sm leading-6 text-[var(--muted-strong)]">
+                  Python, SQL, AWS ETL, Power BI, ML modeling, and data
+                  education.
+                </p>
+              </div>
+              <div className="card-muted p-4">
+                <div className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--amber)]">
+                  Based in
+                </div>
+                <p className="mt-2 text-sm leading-6 text-[var(--muted-strong)]">
+                  Vilnius, Lithuania. Working across analytics, data platforms,
+                  and technical writing.
+                </p>
+              </div>
             </div>
           </div>
         </div>

@@ -1,86 +1,69 @@
-import Link from "next/link";
-import { BarChart3, PenSquare, BrainCircuit } from "lucide-react";
+import { BrainCircuit, DatabaseZap, PenLine } from "lucide-react";
 
-const focusAreas = [
+const pillars = [
   {
-    icon: <BarChart3 className="h-6 w-6" />,
-    title: "Data Science & Analytics",
-    description:
-      "Building analytical workflows, experiments, dashboards, and machine learning solutions that support decision-making.",
+    title: "Data Engineering",
+    icon: DatabaseZap,
+    summary:
+      "I design pipelines that move, validate, transform, and serve data reliably for analytics and operations.",
+    items: ["ETL pipelines", "Data validation", "AWS Glue", "S3 + Athena", "Step Functions", "Terraform"],
+    accent: "text-[var(--teal)]",
   },
   {
-    icon: <PenSquare className="h-6 w-6" />,
+    title: "Data Science",
+    icon: BrainCircuit,
+    summary:
+      "I use statistical modeling and machine learning to answer business questions and make trade-offs visible.",
+    items: ["Machine learning", "Pricing analysis", "Experimentation", "Forecasting", "Model evaluation", "Responsible AI"],
+    accent: "text-[var(--blue)]",
+  },
+  {
     title: "Technical Writing",
-    description:
-      "Writing practical tutorials and explainers on Python, SQL, Excel, statistics, and machine learning.",
-  },
-  {
-    icon: <BrainCircuit className="h-6 w-6" />,
-    title: "Applied Problem Solving",
-    description:
-      "Turning technical complexity into usable outputs, from insights and models to documentation and educational content.",
+    icon: PenLine,
+    summary:
+      "I turn technical systems into tutorials, documentation, and explanations people can actually use.",
+    items: ["DataCamp tutorials", "API-style docs", "Newsletter writing", "Model cards", "Guides", "Developer education"],
+    accent: "text-[var(--amber)]",
   },
 ];
 
 export default function About() {
   return (
-    <section>
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-16 lg:grid-cols-2">
-          <div>
-            <span className="text-sm font-semibold tracking-widest text-gray-500">
-              ABOUT
-            </span>
+    <section id="work" className="section-pad border-t border-white/10">
+      <div className="container-max px-4 sm:px-6">
+        <div className="max-w-3xl">
+          <div className="kicker">What I do</div>
+          <h2 className="section-title mt-5">Three disciplines, one workflow.</h2>
+          <p className="subhead mt-5">
+            My best work happens where data engineering, data science, and
+            communication overlap: build the system, analyze the signal, explain
+            the result.
+          </p>
+        </div>
 
-            <h2 className="mt-6 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">
-              Data Scientist and Technical Writer with a passion for making
-              complex ideas practical.
-            </h2>
+        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+          {pillars.map((pillar) => {
+            const Icon = pillar.icon;
 
-            <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
-              I work across data science, analytics, experimentation, and
-              technical communication. My goal is simple: build useful
-              data-driven solutions and explain technical concepts clearly enough
-              for people to apply them with confidence.
-            </p>
-
-            <p className="mt-4 max-w-xl text-lg leading-8 text-gray-600">
-              My work includes analytics and modeling in industry, educational
-              writing for DataCamp, and independent publishing across data and
-              technology topics.
-            </p>
-
-            <div className="mt-8">
-              <Link
-                href="/about"
-                className="inline-flex items-center rounded-md border border-black px-5 py-3 text-sm font-semibold text-black transition hover:bg-black hover:text-white"
-              >
-                Read Full Bio
-              </Link>
-            </div>
-          </div>
-
-          <div className="space-y-8">
-            {focusAreas.map((item) => (
-              <div
-                key={item.title}
-                className="flex gap-5 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#fff4e2] text-[#d9992e]">
-                  {item.icon}
+            return (
+              <article key={pillar.title} className="card p-6">
+                <div className={`mb-8 inline-flex rounded-lg border border-white/10 bg-white/5 p-3 ${pillar.accent}`}>
+                  <Icon className="h-6 w-6" />
                 </div>
 
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 leading-7 text-gray-600">
-                    {item.description}
-                  </p>
+                <h3 className="text-2xl font-bold text-white">{pillar.title}</h3>
+                <p className="copy mt-4 text-sm">{pillar.summary}</p>
+
+                <div className="mt-7 flex flex-wrap gap-2">
+                  {pillar.items.map((item) => (
+                    <span key={item} className="tag">
+                      {item}
+                    </span>
+                  ))}
                 </div>
-              </div>
-            ))}
-          </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

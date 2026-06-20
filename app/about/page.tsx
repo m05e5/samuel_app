@@ -2,26 +2,23 @@ import Image from "next/image";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 
+const strengths = [
+  "I build Python and SQL data workflows that clean, validate, transform, and serve data for reporting and analytics.",
+  "I apply statistical and ML methods to pricing, perception, brand tracking, and responsible AI problems.",
+  "I write tutorials, documentation, newsletters, and stakeholder-facing explanations that make technical work easier to use.",
+];
+
 export default function AboutPage() {
   return (
     <>
       <Navbar />
 
-      <main className="bg-white pt-28">
-        <section className="py-16">
-          <div className="container-max px-6">
-            <div className="mb-14">
-              <h1 className="text-5xl font-light uppercase tracking-[0.18em] text-gray-900">
-                About
-              </h1>
-              <p className="mt-3 text-3xl font-serif italic text-gray-800">
-                Samuel Shaibu
-              </p>
-            </div>
-
-            <div className="grid gap-14 lg:grid-cols-[420px_1fr] lg:items-start">
+      <main className="light-page pt-32">
+        <section className="section-pad">
+          <div className="container-max px-4 sm:px-6">
+            <div className="grid gap-12 lg:grid-cols-[420px_1fr] lg:items-start">
               <div>
-                <div className="overflow-hidden rounded-2xl bg-gray-100">
+                <div className="card overflow-hidden">
                   <Image
                     src="/samuel_pic3.jpg"
                     alt="Samuel Shaibu portrait"
@@ -30,42 +27,51 @@ export default function AboutPage() {
                     className="h-auto w-full object-cover"
                   />
                 </div>
-
-                <p className="mt-3 text-sm italic text-gray-500">
-                  Samuel Shaibu — Data Scientist and Technical Writer
+                <p className="copy mt-4 text-sm">
+                  Samuel Shaibu. Data engineer, data scientist, and technical
+                  writer based in Vilnius.
                 </p>
               </div>
 
               <div>
-                <div className="rounded-2xl bg-gray-50 p-8">
-                  <p className="text-xl italic leading-8 text-gray-700">
-                    I use data and writing to turn technical complexity into
-                    useful, practical insight.
+                <div className="kicker">About</div>
+                <h1 className="section-title mt-5">
+                  I build data systems and explain the decisions behind them.
+                </h1>
+
+                <div className="mt-8 space-y-6 text-base leading-8 text-[var(--muted-strong)]">
+                  <p>
+                    I am a data professional with 4+ years of experience across
+                    data science, data engineering, analytics, business
+                    intelligence, and technical education. I currently work on
+                    ETL workflows, AI-assisted tools, cloud data pipelines,
+                    dashboards, and statistical models at Syno International.
+                  </p>
+
+                  <p>
+                    My background is intentionally hybrid. I can write Python and
+                    SQL to make data reliable, use statistical and ML methods to
+                    answer business questions, and explain the result clearly to
+                    technical and non-technical audiences.
+                  </p>
+
+                  <p>
+                    Outside industry work, I publish technical content on
+                    DataCamp, Medium, and Substack. I have taught data science
+                    students, mentored project work, and co-authored a
+                    peer-reviewed review paper on machine learning for energy
+                    grid efficiency.
                   </p>
                 </div>
 
-                <div className="mt-10 space-y-6 text-base leading-8 text-gray-700">
-                  <p>
-                    I am a data scientist and technical writer with experience
-                    spanning analytics, experimentation, dashboarding, business
-                    intelligence, and applied machine learning. My work focuses
-                    on building useful solutions and communicating them clearly.
-                  </p>
-
-                  <p>
-                    Alongside my industry experience, I write educational
-                    content on topics such as Python, SQL, Excel, statistics,
-                    and machine learning. I care deeply about making technical
-                    concepts easier to understand, more practical to apply, and
-                    more accessible to wider audiences.
-                  </p>
-
-                  <p>
-                    This website serves as a central place for my professional
-                    work — bringing together my background in data, my public
-                    writing, my experience, and the projects and ideas I am
-                    continuing to develop.
-                  </p>
+                <div className="mt-10 grid gap-4 md:grid-cols-3">
+                  {strengths.map((strength) => (
+                    <div key={strength} className="card-muted p-5">
+                      <p className="text-sm leading-6 text-[var(--muted-strong)]">
+                        {strength}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

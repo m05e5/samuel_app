@@ -4,35 +4,57 @@ import Footer from "@/app/components/Footer";
 const experiences = [
   {
     company: "Syno International",
-    industry: "Fintech",
+    context: "Market research and analytics",
     role: "Data Scientist",
-    period: "Jul 2025 – Present",
-    description:
-      "Working on advanced pricing and brand perception modeling, applying machine learning and statistical methods to improve measurement frameworks, and building ETL and AI-driven tools that accelerate insight delivery.",
+    period: "Jul 2025 - Present",
+    bullets: [
+      "Build Python, SQL, and AWS-based ETL pipelines for ingestion, validation, transformation, and downstream analytics.",
+      "Apply statistical and ML methods including Gabor-Granger, CVI/CBI, brand perception modeling, and key driver analysis.",
+      "Develop Streamlit and LangChain-powered internal tools that reduce manual operations work and accelerate insight delivery.",
+      "Document pipeline architecture, orchestration dependencies, and implementation decisions for review and knowledge transfer.",
+    ],
   },
   {
     company: "Syno International",
-    industry: "Fintech",
+    context: "Brand tracking and insight delivery",
     role: "Data Analyst",
-    period: "Sep 2024 – Jul 2025",
-    description:
-      "Built brand tracking dashboards, ran pricing and brand equity analyses, and delivered insights to support data-driven marketing and strategic decision-making.",
+    period: "Sep 2024 - Jun 2025",
+    bullets: [
+      "Built and maintained Power BI dashboards connected to SQL workflows for global client reporting.",
+      "Delivered MaxDiff and Van Westendorp pricing analysis, mood score modeling, SWOT analysis, and brand equity work.",
+      "Wrote SQL logic for CVI/CBI modeling and campaign analysis, supporting high-accuracy client deliverables.",
+      "Translated business requirements into analysis outputs, documentation, and stakeholder-ready recommendations.",
+    ],
+  },
+  {
+    company: "DataCamp",
+    context: "Technical education",
+    role: "Technical Writer",
+    period: "Apr 2024 - Jul 2025",
+    bullets: [
+      "Published 18+ peer-reviewed tutorials and explainers on Python, SQL, pandas, statistics, Excel, and data science concepts.",
+      "Collaborated with editors and subject-matter experts to improve technical accuracy, clarity, and teaching value.",
+    ],
+  },
+  {
+    company: "GOMYCODE",
+    context: "Data science instruction",
+    role: "Data Science Instructor",
+    period: "Aug 2023 - Feb 2024",
+    bullets: [
+      "Taught and mentored 40+ students across Python, SQL, data analysis, visualization, machine learning, and statistical modeling.",
+      "Led hands-on projects that helped learners build end-to-end data solutions and explain outputs to non-technical audiences.",
+    ],
   },
   {
     company: "Freelance",
-    industry: "Consulting",
-    role: "Business Intelligence Specialist",
-    period: "2022",
-    description:
-      "Delivered analytical support across CRM operations, website analytics, dashboarding, and growth-focused reporting for business decision-making.",
-  },
-  {
-    company: "Cowrywise",
-    industry: "Fintech",
-    role: "Growth Marketing Manager",
-    period: "2020",
-    description:
-      "Led growth-focused campaigns, performance marketing initiatives, content marketing, and lifecycle work that supported user acquisition and retention.",
+    context: "Energy, finance, and edtech clients",
+    role: "Business Intelligence Specialist / Data Scientist",
+    period: "Nov 2020 - Aug 2024",
+    bullets: [
+      "Designed data solutions, Power BI dashboards, and automated ETL workflows using SSIS, SQL, and reporting tools.",
+      "Created client-facing documentation and how-to guides that improved analytics adoption and project turnaround.",
+    ],
   },
 ];
 
@@ -41,52 +63,49 @@ export default function ExperiencePage() {
     <>
       <Navbar />
 
-      <main className="bg-white pt-28">
-        <section className="border-b border-black/5 bg-neutral-50 py-16">
-          <div className="container-max px-6">
-            <span className="text-sm font-semibold tracking-widest text-gray-500">
-              EXPERIENCE
-            </span>
-            <h1 className="mt-4 text-5xl font-bold text-gray-900">
-              Professional Experience
+      <main className="light-page pt-32">
+        <section className="section-pad border-b border-white/10">
+          <div className="container-max px-4 sm:px-6">
+            <div className="kicker">Experience</div>
+            <h1 className="section-title mt-5 max-w-5xl">
+              Data work across engineering, modeling, analytics, and education.
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-600">
-              Selected roles across data science, analytics, business
-              intelligence, and growth-focused work.
+            <p className="subhead mt-6 max-w-3xl">
+              Selected roles that show how I move between building the data
+              foundation, analyzing the problem, and communicating the answer.
             </p>
           </div>
         </section>
 
-        <section className="py-16">
-          <div className="container-max px-6">
-            <div className="space-y-10">
+        <section className="section-pad">
+          <div className="container-max px-4 sm:px-6">
+            <div className="space-y-4">
               {experiences.map((item) => (
-                <div
-                  key={`${item.company}-${item.role}`}
-                  className="rounded-2xl border border-gray-200 p-8 shadow-sm"
-                >
+                <article key={`${item.company}-${item.role}`} className="card p-7">
                   <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                     <div>
-                      <h2 className="text-2xl font-semibold text-gray-900">
-                        {item.company}
-                        <span className="ml-2 font-normal text-gray-500">
-                          ({item.industry})
-                        </span>
-                      </h2>
-                      <p className="mt-2 text-sm font-medium text-gray-600">
-                        {item.role}
+                      <h2 className="text-2xl font-bold text-white">{item.company}</h2>
+                      <p className="mt-2 text-sm font-medium text-[var(--muted)]">
+                        {item.role} | {item.context}
                       </p>
                     </div>
 
-                    <span className="text-sm font-semibold text-[#c98a2d]">
+                    <span className="text-sm font-bold text-[var(--teal)]">
                       {item.period}
                     </span>
                   </div>
 
-                  <p className="mt-5 max-w-3xl leading-8 text-gray-600">
-                    {item.description}
-                  </p>
-                </div>
+                  <ul className="mt-6 grid gap-3 md:grid-cols-2">
+                    {item.bullets.map((bullet) => (
+                      <li
+                        key={bullet}
+                        className="border-l-2 border-[var(--teal)] pl-4 text-sm leading-7 text-[var(--muted-strong)]"
+                      >
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
               ))}
             </div>
           </div>

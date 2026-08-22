@@ -85,6 +85,7 @@ export default function Footer() {
             <Link href="/#articles">Writing</Link>
             <Link href="/#skills">Stack</Link>
             <Link href="/experience">Experience</Link>
+            <Link href="/now">Now</Link>
           </div>
 
           <div>Copyright {new Date().getFullYear()} Samuel Shaibu</div>
